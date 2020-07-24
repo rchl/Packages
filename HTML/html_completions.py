@@ -427,8 +427,10 @@ class HtmlTagCompletions(sublime_plugin.EventListener):
             return []
 
         # determines whether we need to close the tag
-        # default to closing the tag
-        suffix = '>'
+
+        # default to closing the tag, but add a field so the user can
+        # add another attribute if they want to
+        suffix = '$2>'
 
         for c in line_tail:
             if c == '>':
@@ -442,6 +444,9 @@ class HtmlTagCompletions(sublime_plugin.EventListener):
         if suffix == '' and not line_tail.startswith(' ') and not line_tail.startswith('>'):
             # add a space if not there
             suffix = ' '
+
+        # ensure the user can always tab to the end of the completion
+        suffix += '$0'
 
         # got the tag, now find all attributes that match
         attributes = self.tag_to_attributes.get(tag, [])
