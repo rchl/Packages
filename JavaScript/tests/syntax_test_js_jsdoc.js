@@ -40,3 +40,28 @@
 /*@a */
 //^^ - entity.other.attribute-name.documentation
 //   ^^ punctuation.definition.comment.end
+
+/** @type {string[]} */
+//        ^^^^^^^^^^ support.type
+//                  ^^^ - support.type
+//        ^ punctuation.definition.type.begin
+//                 ^ punctuation.definition.type.end
+
+/** @type {import('fs').FSWatcher} */
+//        ^^^^^^^^^^^^^^^^^^^^^^^^ support.type
+//                                ^^^ - support.type
+//                     ^ punctuation.separator.accessor
+//                               ^ punctuation.definition.type.end
+
+/**
+ * @param {{
+//        ^^ support.type
+ *   foo: string
+//^^^^^^^^^^^^^^ support.type
+ * }} foo
+//^^^ support.type
+//   ^^^^ - support.type
+ */
+
+/** @type{string} */
+//       ^^^^^^^^ - support.type

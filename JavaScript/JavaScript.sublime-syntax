@@ -103,6 +103,8 @@ variables:
 
   # '@' followed by a pattern like \S but excluding literal '*' and '@'.
   jsdoc_block_tag: \@[^\n\t\f\v *@]+
+  # Tags that are optionally followed by a type expression.
+  jsdoc_block_tag_with_type: \@(?:arg(?:ument|)|param|type(?:def|)|returns?|prop(?:erty|)|enum|implements|member|module|namespace|(?:p|rivate|protected)|throws|exception|yields?|var)\b
 
 contexts:
   main:
@@ -153,11 +155,41 @@ contexts:
       push: jsdoc-block-tag
 
   jsdoc-block-tag:
+    - match: '{{jsdoc_block_tag_with_type}}'
+      scope: entity.other.attribute-name.documentation.js
+      set:
+        - match: '\s+(?=\{)'
+          set: jsdoc-type-expression
+        - match: ''
+          pop: 1
     - match: '{{jsdoc_block_tag}}'
       scope: entity.other.attribute-name.documentation.js
       pop: 1
     - match: (?=\S)|$
       pop: 1
+
+  jsdoc-type-expression:
+    - match: '\{'
+      scope: punctuation.definition.type.begin.js
+      set:
+        - meta_scope: support.type.js
+        - match: \.
+          scope: punctuation.separator.accessor.js
+        - include: jsdoc-type-inner-brace-open
+        - match: '\}'
+          scope: punctuation.definition.type.end.js
+          pop: 1
+
+  jsdoc-type-inner-brace-close:
+    - match: '\}'
+      pop: 1
+    - match: (?=\*/)
+      pop: 1
+    - include: jsdoc-type-inner-brace-open
+
+  jsdoc-type-inner-brace-open:
+    - match: '\{'
+      push: jsdoc-type-inner-brace-close
 
   comments-top-level:
     - match: ^(#!).*$\n?
