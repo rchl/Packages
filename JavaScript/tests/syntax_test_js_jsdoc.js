@@ -65,3 +65,7 @@
 
 /** @type{string} */
 //       ^^^^^^^^ - support.type
+
+/** @type {string */
+//        ^^^^^^^ support.type
+//                ^^ punctuation.definition.comment.end - support.type

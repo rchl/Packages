@@ -173,6 +173,8 @@ contexts:
       scope: punctuation.definition.type.begin.js
       set:
         - meta_scope: support.type.js
+        - match: (?=\*/)
+          pop: 1
         - match: \.
           scope: punctuation.separator.accessor.js
         - include: jsdoc-type-inner-brace-open
