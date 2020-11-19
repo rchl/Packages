@@ -69,3 +69,7 @@
 /** @type {string */
 //        ^^^^^^^^ support.type
 //                ^^ punctuation.definition.comment.end - support.type
+
+/** @type {{foo: number */
+//        ^^^^^^^^^^^^^^ support.type
+//                      ^^ punctuation.definition.comment.end - support.type
