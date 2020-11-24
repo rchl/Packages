@@ -176,7 +176,7 @@ contexts:
         - match: (?=\*/)
           pop: 1
         - match: \.
-          scope: punctuation.separator.accessor.js
+          scope: punctuation.accessor.js
         - include: jsdoc-type-inner-brace-open
         - match: '\}'
           scope: punctuation.definition.type.end.js
