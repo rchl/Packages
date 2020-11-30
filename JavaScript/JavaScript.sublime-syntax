@@ -187,6 +187,8 @@ contexts:
       pop: 1
     - match: (?=\*/)
       pop: 1
+    - match: \.
+      scope: punctuation.accessor.js
     - include: jsdoc-type-inner-brace-open
 
   jsdoc-type-inner-brace-open:

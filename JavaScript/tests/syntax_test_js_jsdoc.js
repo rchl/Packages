@@ -56,8 +56,9 @@
 /**
  * @param {{
 //        ^^ support.type
- *   foo: string
-//^^^^^^^^^^^^^^ support.type
+ *   foo: A.B
+//^^^^^^^^^^^ support.type
+//         ^ punctuation.accessor
  * }} foo
 //^^^ support.type
 //   ^^^^ - support.type
